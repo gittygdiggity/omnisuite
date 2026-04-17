@@ -1,0 +1,1 @@
+ALTER TYPE lead_status RENAME VALUE 'contacted' TO 'booked';

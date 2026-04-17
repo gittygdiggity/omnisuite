@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniSuite</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 320px;
+      min-height: 360px;
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #0a0f0d;
+      color: #e8ede9;
+      overflow: hidden;
+    }
+    .bg-mesh {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 20% 0%, hsla(163, 72%, 42%, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, hsla(152, 50%, 30%, 0.08) 0%, transparent 50%),
+        #0a0f0d;
+      z-index: 0;
+    }
+    .content { position: relative; z-index: 1; padding: 20px; }
+    .header { text-align: center; margin-bottom: 24px; }
+    .logo-mark {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: linear-gradient(135deg, hsl(163 72% 42%), hsl(152 55% 35%));
+      display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 30px hsla(163, 72%, 42%, 0.3);
+      margin-bottom: 10px; font-size: 24px; font-weight: 900; color: #0a0f0d;
+    }
+    .brand { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: #fff; }
+    .tag { font-size: 11px; color: rgba(232, 237, 233, 0.4); margin-top: 2px; }
+    .stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;
+    }
+    .stat {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 12px; text-align: center;
+    }
+    .stat-value { font-size: 22px; font-weight: 700; color: hsl(163 72% 42%); }
+    .stat-label { font-size: 10px; color: rgba(232,237,233,0.45); margin-top: 2px; }
+    .btn-grid { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .btn {
+      width: 100%; padding: 10px 16px; border: none; border-radius: 10px;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s ease;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, hsl(163 72% 42%), hsl(152 55% 35%));
+      color: #0a0f0d;
+    }
+    .btn-primary:hover { box-shadow: 0 0 20px hsla(163, 72%, 42%, 0.3); transform: translateY(-1px); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.06); color: rgba(232,237,233,0.7);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .footer { text-align: center; font-size: 9px; color: rgba(232,237,233,0.2); }
+  </style>
+</head>
+<body>
+  <div class="bg-mesh"></div>
+  <div class="content">
+    <div class="header">
+      <div class="logo-mark">O</div>
+      <div class="brand">OmniSuite</div>
+      <div class="tag">Sales Command Center</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value" id="lead-count">—</div>
+        <div class="stat-label">Total Leads</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="sub-count">—</div>
+        <div class="stat-label">Sub-Accounts</div>
+      </div>
+    </div>
+
+    <div class="btn-grid">
+      <button class="btn btn-primary" id="btn-dashboard">
+        ⚡ Open Dashboard
+      </button>
+      <button class="btn btn-secondary" id="btn-sync">
+        🔄 Sync Instantly Leads
+      </button>
+    </div>
+
+    <div class="footer">OMNISUITE v1.0 — Chrome Extension</div>
+  </div>
+
+  <script>
+    document.getElementById('btn-dashboard').addEventListener('click', () => {
+      chrome.tabs.create({ url: chrome.runtime.getURL('index.html') });
+    });
+    document.getElementById('btn-sync').addEventListener('click', () => {
+      const btn = document.getElementById('btn-sync');
+      btn.textContent = '⏳ Syncing...';
+      btn.disabled = true;
+      // Open dashboard on the Instantly tab
+      chrome.tabs.create({ url: chrome.runtime.getURL('index.html') });
+    });
+  </script>
+</body>
+</html>

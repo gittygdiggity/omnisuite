@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design System ─────────────────────────────────────────────────────── */
+/* All colors are HSL. Teal/dark-green glassmorphism CRM theme.              */
+
+@layer base {
+  :root {
+    /* Background layers */
+    --background: 160 25% 7%;
+    --background-2: 160 22% 10%;
+    --foreground: 160 10% 95%;
+
+    /* Card / glass surfaces */
+    --card: 160 20% 12%;
+    --card-foreground: 160 10% 95%;
+
+    --popover: 160 20% 11%;
+    --popover-foreground: 160 10% 95%;
+
+    /* Brand teal-green */
+    --primary: 163 72% 42%;
+    --primary-foreground: 160 30% 5%;
+    --primary-glow: 163 80% 55%;
+
+    /* Secondary emerald-dark */
+    --secondary: 152 45% 16%;
+    --secondary-foreground: 160 10% 90%;
+
+    /* Muted */
+    --muted: 160 18% 15%;
+    --muted-foreground: 160 10% 55%;
+
+    /* Accent */
+    --accent: 163 55% 30%;
+    --accent-foreground: 163 80% 90%;
+
+    /* Destructive */
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Borders */
+    --border: 163 30% 20%;
+    --input: 160 20% 16%;
+    --ring: 163 72% 42%;
+
+    --radius: 0.75rem;
+
+    /* Glass morphism tokens */
+    --glass-bg: hsla(160, 22%, 12%, 0.55);
+    --glass-bg-hover: hsla(163, 30%, 14%, 0.7);
+    --glass-border: hsla(163, 60%, 40%, 0.25);
+    --glass-border-bright: hsla(163, 70%, 50%, 0.45);
+    --glass-blur: blur(16px);
+
+    /* Sidebar */
+    --sidebar-background: 160 25% 7%;
+    --sidebar-foreground: 160 10% 85%;
+    --sidebar-primary: 163 72% 42%;
+    --sidebar-primary-foreground: 160 30% 5%;
+    --sidebar-accent: 152 45% 16%;
+    --sidebar-accent-foreground: 160 10% 90%;
+    --sidebar-border: 163 30% 16%;
+    --sidebar-ring: 163 72% 42%;
+
+    /* Status colors */
+    --status-new: 163 72% 42%;
+    --status-contacted: 210 80% 55%;
+    --status-qualified: 270 65% 60%;
+    --status-proposal: 35 90% 55%;
+    --status-won: 142 70% 45%;
+    --status-lost: 0 65% 55%;
+
+    /* Source tag colors */
+    --source-cold: 210 80% 55%;
+    --source-linkedin: 210 85% 48%;
+    --source-networking: 270 65% 60%;
+    --source-instantly: 163 72% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: radial-gradient(ellipse at 20% 10%, hsla(163, 60%, 14%, 0.8) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, hsla(152, 50%, 10%, 0.6) 0%, transparent 50%),
+                hsl(var(--background));
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* ─── Glass Utilities ───────────────────────────────────────────────────── */
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-hover {
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .glass-hover:hover {
+    background: var(--glass-bg-hover);
+    border-color: var(--glass-border-bright);
+    box-shadow: 0 0 24px hsla(163, 70%, 40%, 0.15), 0 8px 32px rgba(0,0,0,0.3);
+  }
+
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25), inset 0 1px 0 hsla(163, 60%, 60%, 0.08);
+  }
+
+  .glass-sidebar {
+    background: hsla(160, 26%, 7%, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-right: 1px solid var(--glass-border);
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 20px hsla(163, 72%, 42%, 0.35), 0 0 60px hsla(163, 72%, 42%, 0.1);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px hsla(163, 72%, 42%, 0.6);
+  }
+
+  .scrollable {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  .scrollable::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .scrollable::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollable::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 2px;
+  }
+}
+
+/* ─── Animations ────────────────────────────────────────────────────────── */
+@layer utilities {
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(10px); filter: blur(3px); }
+    to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 12px hsla(163, 72%, 42%, 0.3); }
+    50%       { box-shadow: 0 0 28px hsla(163, 72%, 42%, 0.6); }
+  }
+
+  @keyframes slide-in-left {
+    from { opacity: 0; transform: translateX(-12px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .animate-fade-up    { animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .animate-fade-in    { animation: fade-in 0.35s ease both; }
+  .animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+  .animate-slide-left { animation: slide-in-left 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+}
