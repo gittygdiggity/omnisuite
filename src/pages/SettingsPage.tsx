@@ -57,9 +57,16 @@ const INTEGRATIONS = [
   {
     key: "openai_api_key",
     label: "OpenAI",
-    desc: "Powers live call coaching, copy personalization, and strategy generation",
+    desc: "Powers GPT-4o in OpenClaw chat, call coaching, and phone enrichment",
     placeholder: "sk-proj-xxxxxxxxxxxxxxxxxxxxxxxx",
     docs: "platform.openai.com → API Keys",
+  },
+  {
+    key: "anthropic_api_key",
+    label: "Anthropic (Claude)",
+    desc: "Powers Claude Sonnet in OpenClaw — your AI sales assistant",
+    placeholder: "sk-ant-xxxxxxxxxxxxxxxxxxxxxxxx",
+    docs: "console.anthropic.com → API Keys",
   },
   {
     key: "fathom_api_key",
@@ -84,6 +91,7 @@ export default function SettingsPage() {
   const [keys, setKeys] = useState<Record<IntegrationKey, string>>({
     instantly_api_key: "",
     openai_api_key: "",
+    anthropic_api_key: "",
     fathom_api_key: "",
     brave_api_key: "",
   });

@@ -8,6 +8,7 @@ import Leads from "./pages/Leads";
 import Clients from "./pages/Clients";
 import Analytics from "./pages/Analytics";
 import SettingsPage from "./pages/SettingsPage";
+import Builder from "./pages/Builder";
 
 const queryClient = new QueryClient();
 
@@ -25,7 +26,7 @@ const App = () => {
             {activeTab === "pipeline"    && <Leads />}
             {activeTab === "clients"     && <Clients />}
             {activeTab === "personalize" && <ComingSoon title="Personalize" desc="AI-powered copy personalization — upload a CSV, write example copy, and generate personalized outreach at scale." />}
-            {activeTab === "builder"     && <ComingSoon title="Builder" desc="CRM table with Fathom AI call insights — track leads, calls, and deal progress." />}
+            {activeTab === "builder"     && <Builder />}
             {activeTab === "analytics"   && <Analytics />}
             {activeTab === "settings"    && <SettingsPage />}
           </main>
