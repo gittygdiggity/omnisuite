@@ -9,11 +9,26 @@ import Clients from "./pages/Clients";
 import Analytics from "./pages/Analytics";
 import SettingsPage from "./pages/SettingsPage";
 import Builder from "./pages/Builder";
+import AuthPage from "./pages/AuthPage";
+import { useAuth } from "./hooks/useAuth";
 
 const queryClient = new QueryClient();
 
 const App = () => {
+  const { session, loading, signOut } = useAuth();
   const [activeTab, setActiveTab] = useState<TabId>("pipeline");
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen w-screen bg-background">
+        <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+      </div>
+    );
+  }
+
+  if (!session) {
+    return <AuthPage />;
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -21,7 +36,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <div className="flex flex-col h-screen w-screen overflow-hidden">
-          <TabNav activeTab={activeTab} onTabChange={setActiveTab} />
+          <TabNav activeTab={activeTab} onTabChange={setActiveTab} onSignOut={signOut} />
           <main className="flex-1 overflow-hidden">
             {activeTab === "pipeline"    && <Leads />}
             {activeTab === "clients"     && <Clients />}

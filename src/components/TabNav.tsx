@@ -7,6 +7,7 @@ import {
   BarChart3,
   Settings,
   Building2,
+  LogOut,
 } from "lucide-react";
 
 export type TabId =
@@ -35,9 +36,10 @@ const TABS: Tab[] = [
 interface TabNavProps {
   activeTab: TabId;
   onTabChange: (tab: TabId) => void;
+  onSignOut?: () => void;
 }
 
-export default function TabNav({ activeTab, onTabChange }: TabNavProps) {
+export default function TabNav({ activeTab, onTabChange, onSignOut }: TabNavProps) {
   return (
     <header className="flex items-center gap-1 px-4 py-2 border-b border-white/8 bg-background/80 backdrop-blur-xl flex-shrink-0">
       {/* Brand */}
@@ -75,6 +77,18 @@ export default function TabNav({ activeTab, onTabChange }: TabNavProps) {
           );
         })}
       </nav>
+
+      {/* Sign out */}
+      {onSignOut && (
+        <button
+          onClick={onSignOut}
+          title="Sign out"
+          className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
+        >
+          <LogOut size={13} />
+          <span className="hidden md:inline">Sign Out</span>
+        </button>
+      )}
     </header>
   );
 }
