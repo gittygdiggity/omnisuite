@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "omnisuite": {
+      "command": "node",
+      "args": ["/Applications/hustle-heart-main 2/omnisuite-mcp/index.js"],
+      "env": {
+        "SUPABASE_URL": "https://wwdxaobjwzwtyminrude.supabase.co",
+        "SUPABASE_KEY": "sb_publishable_dn3AzrexhFuiQp45n7ykOw_YvQ2LMkT"
+      }
+    }
+  }
+}
